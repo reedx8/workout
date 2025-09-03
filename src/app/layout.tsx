@@ -4,7 +4,7 @@ import { Lato } from "next/font/google";
 import "./globals.css";
 
 // Lato = regula text
-// Anton = Headlines <h1>, etc
+// Anton and Eurostile Extd= Headlines <h1>, etc
 
 const defaultFont = Lato({
   subsets: ["latin"],

@@ -1,76 +1,294 @@
 'use client';
-import Image from "next/image";
-import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
-import Application from "@/components/application";
-import MyButton from "@/components/mybutton";
+import Image from 'next/image';
+import Footer from '@/components/footer';
+import Navbar from '@/components/navbar';
+import Application from '@/components/application';
+import MyButton from '@/components/mybutton';
 import { useRef } from 'react';
-import { Anton } from "next/font/google";
+import { Anton } from 'next/font/google';
+import localFont from 'next/font/local';
 
-const headFont = Anton({
-  subsets: ["latin"],
-  weight: ["400"],
+const headlineFont = Anton({
+    subsets: ['latin'],
+    weight: ['400'],
+});
+
+const headlineFont2 = localFont({
+    src: '../../public/fonts/EurostileExtendedBlack.ttf',
 });
 
 export default function Home() {
-  const scrollRef = useRef<HTMLElement | null>(null);
+    const scrollRef = useRef<HTMLElement | null>(null);
 
-  return (
-    <main>
-      <Navbar scrollRef={scrollRef}/>
-      <section className='h-200 bg-amber-200 pt-50'>
-        <p className={headFont.className}>Join Our Team</p>
-        <h1>FitFusion</h1>
-        <MyButton text="View Open Positions" isNavBtn={false}/>
-      </section>
-      <section className='flex justify-between' ref={scrollRef}>
-        <div>
-          <h2>Management Team</h2>
-        </div>
-        <div>
-          <h2>Training Team</h2>
-        </div>
-      </section>
-      <section>
-        <p>video here...</p>
-      </section>
-      <section className='flex flex-col items-center'>
-        <h2>BE A PART OF A CULTURE</h2>
-        <h2>WHERE OUT PEOPLE MATTER.</h2>
-        <p>{`At FitFusion, our employees are more than just staff - they're family.`}</p>
-        <p>{`We're here to help you achieve your goals and reach your full potential, helping our community of fitness enthusiasts to achieve their dreams.`}</p>
-        <h3>Our Values:</h3>
-        <div className='flex'>
-          <div>Hard work and Dedication</div>
-          <div>Teamwork and Unity</div>
-          <div>Work-Life Balance</div>
-          <div>Personal Integrity and Respect</div>
-        </div>
-      </section>
-      <section>
-        <h2>WHY WORK HERE</h2>
-      </section>
-      <section>
-        <h2>WHY LIVE HERE</h2>
-      </section>
-      <section className='flex flex-col items-center'>
-        <h2>PICK THE CAREER PATH</h2>
-        <h2>THAT IS RIGHT FOR YOU</h2>
-        <div className='flex justify-between'>
-          <div>
-            <h2>Management Team</h2>
-            <button>Learn More</button>
-          </div>
-          <div>
-            <h2>Training Team</h2>
-            <button>Learn More</button>
-          </div>
-        </div>
-      </section>
-      <section>
-        <Application/>
-      </section>
-      <Footer/>
-    </main>
-  );
+    return (
+        <main>
+            <Navbar scrollRef={scrollRef} />
+            <section className='relative min-h-225 w-full overflow-hidden'>
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className='absolute top-0 left-0 w-full h-full object-cover'
+                >
+                    <source
+                        src='https://general-xreed.s3.us-west-2.amazonaws.com/vid.mp4'
+                        type='video/mp4'
+                    />
+                    <p>Your browser does not support the video element.</p>
+                </video>
+                <div className='absolute top-0 left-0 w-full h-full bg-black/50' />
+                <div className='absolute px-10 pt-50 text-white w-full'>
+                    <p className={`${headlineFont.className} text-3xl`}>
+                        Join Our Team
+                    </p>
+                    <div className='bg-white/30 w-full h-0.25 my-10'></div>
+                    <h1 className={`${headlineFont2.className} text-8xl`}>
+                        Fit
+                        <span
+                            style={{
+                                color: 'transparent',
+                                WebkitTextStroke: '2px #FFFFFF',
+                            }}
+                        >
+                            Fusion
+                        </span>
+                    </h1>
+                    <h1 className={`${headlineFont2.className} text-8xl`}>
+                      Gym <span style={{color: 'transparent', WebkitTextStroke: '2px #FFFFFF'}}>x</span> Crossfit
+                      </h1>
+                    <div className='mt-10'>
+                        <MyButton text='VIEW OPEN POSITIONS' isScrollBtn={true} scrollRef={scrollRef}/>
+                    </div>
+                </div>
+            </section>
+            <section className='flex text-white' ref={scrollRef}>
+                <div className='relative'>
+                    <Image
+                        src='/pics/jump.jpg'
+                        alt='quads'
+                        width={800}
+                        height={600}
+                    />
+                    <div className='absolute inset-0 flex flex-col justify-end pl-4 pb-4'>
+                        <h2
+                            className={`${headlineFont2.className} text-6xl`}
+                            style={{
+                                color: 'transparent',
+                                WebkitTextStroke: '1px #FFFFFF',
+                            }}
+                        >
+                            Management
+                        </h2>
+                        <h2 className={`${headlineFont2.className} text-6xl`}>
+                            Team
+                        </h2>
+                    </div>
+                </div>
+                <div className='relative'>
+                    <Image
+                        src='/pics/weight.jpg'
+                        alt='deadlift'
+                        width={800}
+                        height={600}
+                    />
+                    <div className='absolute inset-0 flex flex-col justify-end pl-4 pb-4'>
+                        <h2
+                            className={`${headlineFont2.className} text-6xl`}
+                            style={{
+                                color: 'transparent',
+                                WebkitTextStroke: '1px #FFFFFF',
+                            }}
+                        >
+                            Training
+                        </h2>
+                        <h2 className={`${headlineFont2.className} text-6xl`}>
+                            Team
+                        </h2>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div className='flex justify-center py-20'>
+                    <iframe
+                        // width='560'
+                        // height='315'
+                        className='border-1 border-black/30 p-4'
+                        width='80%' // REFACTOR
+                        height='415'
+                        src='https://www.youtube.com/embed/kj6F7H68PW4?si=pifPAuyyGkd7I9XO'
+                        title='YouTube video player'
+                        frameBorder='0'
+                        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                        allowFullScreen
+                    ></iframe>
+                </div>
+            </section>
+            <section className='flex flex-col items-center px-6 py-20 bg-[var(--color-myRedBg)]'>
+                <h2
+                    className={`${headlineFont2.className} text-center text-5xl`}
+                >
+                    <span
+                        style={{
+                            color: 'transparent',
+                            WebkitTextStroke: '2px #000000',
+                        }}
+                    >
+                        BE&nbsp;
+                    </span>
+                    A PART OF A CULTURE
+                </h2>
+                <h2
+                    className={`${headlineFont2.className} text-center text-5xl`}
+                >
+                    <span
+                        style={{
+                            color: 'transparent',
+                            WebkitTextStroke: '2px #000000',
+                        }}
+                    >
+                        WHERE&nbsp;
+                    </span>
+                    OUR PEOPLE MATTER.
+                </h2>
+                <div className='bg-black w-full h-0.25 my-8'></div>
+                <div className='flex flex-col text-center text-xl mb-10'>
+                    <p>{`At FitFusion, our employees are more than just staff - they're family.`}</p>
+                    <p>{`We're here to help you achieve your goals and reach your full potential, helping our community of fitness enthusiasts to achieve their dreams so that they can reach their full potential.`}</p>
+                </div>
+                <h3
+                    className={`${headlineFont.className} text-center text-4xl`}
+                >
+                    Our Values:
+                </h3>
+                <div className='flex gap-8'>
+                    <div>Hard work and Dedication</div>
+                    <div>Teamwork and Unity</div>
+                    <div>Work-Life Balance</div>
+                    <div>Personal Integrity and Respect</div>
+                </div>
+            </section>
+            <section className='bg-black text-white py-20 px-8'>
+                <h2 className={`${headlineFont2.className} text-5xl`}>
+                    <span
+                        style={{
+                            color: 'transparent',
+                            WebkitTextStroke: '2px #FFFFFF',
+                        }}
+                    >
+                        WHY&nbsp;
+                    </span>
+                    WORK HERE
+                </h2>
+                <div className='bg-white w-full h-0.25 my-8'></div>
+                <div>
+                    <div>
+                        <h2 className={`${headlineFont.className} text-2xl`}>
+                            Healthy Culture
+                        </h2>
+                    </div>
+                    <div>
+                        <h2 className={`${headlineFont.className} text-2xl`}>
+                            Autonomy
+                        </h2>
+                    </div>
+                    <div>
+                        <h2 className={`${headlineFont.className} text-2xl`}>
+                            Opportunities
+                        </h2>
+                    </div>
+                    <div>
+                        <h2 className={`${headlineFont.className} text-2xl`}>
+                            Community Support
+                        </h2>
+                    </div>
+                    <div>
+                        <h2 className={`${headlineFont.className} text-2xl`}>
+                            Top-Tier Equipment
+                        </h2>
+                    </div>
+                </div>
+            </section>
+            <section className='bg-[var(--color-myRedBg)] text-white py-20 px-8'>
+                <h2 className={`${headlineFont2.className} text-5xl`}>
+                    <span
+                        style={{
+                            color: 'transparent',
+                            WebkitTextStroke: '2px #FFFFFF',
+                        }}
+                    >
+                        WHY&nbsp;
+                    </span>
+                    LIVE HERE
+                </h2>
+                <div className='bg-white w-full h-0.25 my-8'></div>
+                <div>
+                    <div>
+                        <h2 className={`${headlineFont.className} text-2xl`}>
+                            Affordable Living
+                        </h2>
+                    </div>
+                    <div>
+                        <h2 className={`${headlineFont.className} text-2xl`}>
+                            Outdoor Recreation & Natural Beauty
+                        </h2>
+                    </div>
+                    <div>
+                        <h2 className={`${headlineFont.className} text-2xl`}>
+                            Ideal Climate
+                        </h2>
+                    </div>
+                    <div>
+                        <h2 className={`${headlineFont.className} text-2xl`}>
+                            Family-Friendly
+                        </h2>
+                    </div>
+                    <div>
+                        <h2 className={`${headlineFont.className} text-2xl`}>
+                            City Access, No Congestion
+                        </h2>
+                    </div>
+                </div>
+            </section>
+            <section className='flex flex-col items-center text-black py-20 px-8'>
+                <h2 className={`${headlineFont2.className} text-5xl`}>
+                    <span
+                        style={{
+                            color: 'transparent',
+                            WebkitTextStroke: '2px #000000',
+                        }}
+                    >
+                        PICK&nbsp;
+                    </span>
+                    THE CAREER PATH
+                </h2>
+                <h2 className={`${headlineFont2.className} text-5xl`}>
+                    <span
+                        style={{
+                            color: 'transparent',
+                            WebkitTextStroke: '2px #000000',
+                        }}
+                    >
+                        THAT IS&nbsp;
+                    </span>
+                    RIGHT FOR YOU
+                </h2>
+                <div className='bg-black h-0.25 w-full my-8'></div>
+                <div className='flex justify-between'>
+                    <div>
+                        <h2>Management Team</h2>
+                        <button>Learn More</button>
+                    </div>
+                    <div>
+                        <h2>Training Team</h2>
+                        <button>Learn More</button>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <Application />
+            </section>
+            <Footer />
+        </main>
+    );
 }

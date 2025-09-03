@@ -3,6 +3,9 @@
 :root {
     --background: #ffffff;
     --foreground: #171717;
+    --color-myRedBg: #a22c29;
+    /* --color-myRedBg: #f02d3a; */
+    /* --color-myRedBg: #ff3c38; */
 }
 
 @theme inline {
@@ -17,6 +20,7 @@
         --background: #0a0a0a;
         --foreground: #ededed;
         --whitebg: #ffffff;
+        --redbg: #db222a;
     }
 }
 

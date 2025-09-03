@@ -16,7 +16,7 @@ export default function Navbar({ scrollRef }) {
                 <Link href='/training'>TRAINING TEAM</Link>
                 <MyButton
                     text='OPEN POSITIONS'
-                    isNavBtn={true}
+                    isScrollBtn={true}
                     scrollRef={scrollRef}
                 />
             </div>

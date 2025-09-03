@@ -1,27 +1,32 @@
-import { on } from "events";
+import localFont from 'next/font/local';
+
+const headlineFont2 = localFont({
+    src: '../../public/fonts/EurostileExtendedBlack.ttf',
+});
 
 export default function MyButton({
     text,
-    isNavBtn,
+    isScrollBtn,
     scrollRef,
 }: {
     text: string;
-    isNavBtn: boolean;
+    isScrollBtn: boolean;
     scrollRef?: any;
     // scrollRef?: HTMLElement | undefined;
 }) {
     return (
         <button
             type='button'
-            className='cursor-pointer p-2 bg-white text-black border-1 border-black/80'
+            className='cursor-pointer py-3 px-6 bg-black text-[var(--color-myRedBg)] border-1 border-[var(--color-myRedBg)]'
             onClick={() =>
-                isNavBtn &&
+                isScrollBtn &&
+                scrollRef &&
                 scrollRef.current?.scrollIntoView({
                     behavior: 'smooth',
                 })
             }
         >
-            {text}
+            <p className={`${headlineFont2.className} text-lg`}>{text}</p>
         </button>
     );
 }
