@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function Footer() {
     return (
-        <footer className='px-4 py-4 text-sm'>
+        <footer className='px-8 py-4 text-md'>
             <p>FitFusion</p>
             <div className='flex gap-2 items-center'>
                 <a href='https://facebook.com' target='_blank'>

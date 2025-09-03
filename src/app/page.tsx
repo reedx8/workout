@@ -1,18 +1,29 @@
+'use client';
 import Image from "next/image";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import Application from "@/components/application";
+import MyButton from "@/components/mybutton";
+import { useRef } from 'react';
+import { Anton } from "next/font/google";
+
+const headFont = Anton({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 export default function Home() {
+  const scrollRef = useRef<HTMLElement | null>(null);
+
   return (
     <main>
-      <Navbar/>
-      <section>
-        <p>Join Our Team</p>
+      <Navbar scrollRef={scrollRef}/>
+      <section className='h-200 bg-amber-200 pt-50'>
+        <p className={headFont.className}>Join Our Team</p>
         <h1>FitFusion</h1>
-        <button>View Open Positions</button>
+        <MyButton text="View Open Positions" isNavBtn={false}/>
       </section>
-      <section className='flex justify-between'>
+      <section className='flex justify-between' ref={scrollRef}>
         <div>
           <h2>Management Team</h2>
         </div>
@@ -26,8 +37,8 @@ export default function Home() {
       <section className='flex flex-col items-center'>
         <h2>BE A PART OF A CULTURE</h2>
         <h2>WHERE OUT PEOPLE MATTER.</h2>
-        <p> At FitFusion, our employees are more than just staff - they're family.</p>
-        <p>We're here to help you achieve your goals and reach your full potential, helping our community of fitness enthusiasts to achieve their dreams.</p>
+        <p>{`At FitFusion, our employees are more than just staff - they're family.`}</p>
+        <p>{`We're here to help you achieve your goals and reach your full potential, helping our community of fitness enthusiasts to achieve their dreams.`}</p>
         <h3>Our Values:</h3>
         <div className='flex'>
           <div>Hard work and Dedication</div>
