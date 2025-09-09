@@ -7,6 +7,8 @@ import MyButton from '@/components/mybutton';
 import { useRef } from 'react';
 import { Anton } from 'next/font/google';
 import localFont from 'next/font/local';
+import { FaPeopleGroup } from "react-icons/fa6";
+import { GiWeightLiftingUp } from "react-icons/gi";
 
 const headlineFont = Anton({
     subsets: ['latin'],
@@ -55,10 +57,23 @@ export default function Home() {
                         </span>
                     </h1>
                     <h1 className={`${headlineFont2.className} text-8xl`}>
-                      Gym <span style={{color: 'transparent', WebkitTextStroke: '2px #FFFFFF'}}>x</span> Crossfit
-                      </h1>
+                        Gym{' '}
+                        <span
+                            style={{
+                                color: 'transparent',
+                                WebkitTextStroke: '2px #FFFFFF',
+                            }}
+                        >
+                            x
+                        </span>{' '}
+                        Crossfit
+                    </h1>
                     <div className='mt-10'>
-                        <MyButton text='VIEW OPEN POSITIONS' isScrollBtn={true} scrollRef={scrollRef}/>
+                        <MyButton
+                            text='VIEW OPEN POSITIONS'
+                            isScrollBtn={true}
+                            scrollRef={scrollRef}
+                        />
                     </div>
                 </div>
             </section>
@@ -131,7 +146,7 @@ export default function Home() {
                     <span
                         style={{
                             color: 'transparent',
-                            WebkitTextStroke: '2px #000000',
+                            WebkitTextStroke: '2px #FFFFFF',
                         }}
                     >
                         BE&nbsp;
@@ -144,7 +159,7 @@ export default function Home() {
                     <span
                         style={{
                             color: 'transparent',
-                            WebkitTextStroke: '2px #000000',
+                            WebkitTextStroke: '2px #FFFFFF',
                         }}
                     >
                         WHERE&nbsp;
@@ -152,20 +167,68 @@ export default function Home() {
                     OUR PEOPLE MATTER.
                 </h2>
                 <div className='bg-black w-full h-0.25 my-8'></div>
-                <div className='flex flex-col text-center text-xl mb-10'>
+                <div className='flex flex-col text-center text-xl mb-10 text-white'>
                     <p>{`At FitFusion, our employees are more than just staff - they're family.`}</p>
                     <p>{`We're here to help you achieve your goals and reach your full potential, helping our community of fitness enthusiasts to achieve their dreams so that they can reach their full potential.`}</p>
                 </div>
                 <h3
-                    className={`${headlineFont.className} text-center text-4xl`}
+                    className={`${headlineFont.className} text-center text-3xl mb-4 text-white`}
                 >
                     Our Values:
                 </h3>
-                <div className='flex gap-8'>
-                    <div>Hard work and Dedication</div>
-                    <div>Teamwork and Unity</div>
-                    <div>Work-Life Balance</div>
-                    <div>Personal Integrity and Respect</div>
+                <div className='flex gap-6'>
+                    <div className='border-1 border-white h-60 w-60 relative'>
+                        <Image
+                            src='/pics/run.jpeg'
+                            alt='run'
+                            width='300'
+                            height='300'
+                            className='absolute'
+                        />
+                        <div className='bg-[var(--color-myRedBg)]/60 w-full h-full absolute'></div>
+                        <p className={`${headlineFont2.className} absolute bottom-20 text-white text-xl text-center`}>
+                            Hard work and Dedication
+                        </p>
+                    </div>
+                    <div className='border-1 border-white h-60 w-60 relative'>
+                        <Image
+                            src='/pics/run2.jpeg'
+                            alt='run'
+                            width='300'
+                            height='300'
+                            className='absolute'
+                        />
+                        <div className='bg-[var(--color-myRedBg)]/60 w-full h-full absolute'></div>
+                        <p className={`${headlineFont2.className} absolute bottom-20 text-white text-xl text-center`}>
+                            Teamwork and Unity
+                        </p>
+                    </div>
+                    <div className='border-1 border-white h-60 w-60 relative'>
+                        <Image
+                            src='/pics/outside.jpeg'
+                            alt='run'
+                            width='300'
+                            height='300'
+                            className='absolute'
+                        />
+                        <div className='bg-[var(--color-myRedBg)]/60 w-full h-full absolute'></div>
+                        <p className={`${headlineFont2.className} absolute bottom-25 text-white text-xl text-center`}>
+                            Work-Life Balance
+                        </p>
+                    </div>
+                    <div className='border-1 border-white h-60 w-60 relative'>
+                        <Image
+                            src='/pics/color.jpg'
+                            alt='run'
+                            width='300'
+                            height='300'
+                            className='absolute'
+                        />
+                        <div className='bg-[var(--color-myRedBg)]/60 w-full h-full absolute'></div>
+                        <p className={`${headlineFont2.className} absolute bottom-20 text-white text-xl text-center`}>
+                            Personal Integrity and Respect
+                        </p>
+                    </div>
                 </div>
             </section>
             <section className='bg-black text-white py-20 px-8'>
@@ -274,14 +337,18 @@ export default function Home() {
                     RIGHT FOR YOU
                 </h2>
                 <div className='bg-black h-0.25 w-full my-8'></div>
-                <div className='flex justify-between'>
-                    <div>
-                        <h2>Management Team</h2>
-                        <button>Learn More</button>
+                <div className='flex justify-between gap-6'>
+                    <div className='py-10 px-15 border-1 w-125 border-[var(--color-myRedBg)] flex flex-col items-center gap-2'>
+                        <FaPeopleGroup size={30} className='text-[var(--color-myRedBg)]' />
+                        <h2 className={`${headlineFont2.className} text-3xl text-center`}>Management Team</h2>
+                        <p className='text-center text-md mb-2'>Why join management? Our Management Team is entrusted with the responsibility of managing the day-to-day operations of the company.</p>
+                        <MyButton text='LEARN MORE' isScrollBtn={false} />
                     </div>
-                    <div>
-                        <h2>Training Team</h2>
-                        <button>Learn More</button>
+                    <div className='py-10 px-15 border-1 w-125 border-[var(--color-myRedBg)] flex flex-col items-center gap-2'>
+                      <GiWeightLiftingUp size={30} className='text-[var(--color-myRedBg)]' />
+                        <h2 className={`${headlineFont2.className} text-3xl text-center`}>Training Team</h2>
+                        <p className='text-center text-md mb-2'>Looking for a range of job duties to help support our staff and community? Our Training Team provides a full range of functions and a high level of service to our company and community.</p>
+                        <MyButton text='LEARN MORE' isScrollBtn={false} />
                     </div>
                 </div>
             </section>
