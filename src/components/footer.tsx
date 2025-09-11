@@ -2,15 +2,15 @@ import Image from 'next/image';
 
 export default function Footer() {
     return (
-        <footer className='px-8 py-4 text-md'>
+        <footer className=' flex flex-col gap-4 px-10 py-4 text-md'>
             <p>FitFusion</p>
             <div className='flex gap-2 items-center'>
                 <a href='https://facebook.com' target='_blank'>
                     <Image
                         src='/socials/facebook.png'
                         alt='facebook'
-                        width={20}
-                        height={20}
+                        width={25}
+                        height={25}
                         quality={100}
                     />
                 </a>
@@ -18,16 +18,16 @@ export default function Footer() {
                     <Image
                         src='/socials/x.png'
                         alt='x'
-                        width={30}
-                        height={20}
+                        width={35}
+                        height={25}
                     />
                 </a>
                 <a href='https://instagram.com' target='_blank'>
                     <Image
                         src='/socials/instagram.png'
                         alt='instagram'
-                        width={20}
-                        height={20}
+                        width={25}
+                        height={25}
                         quality={100}
                     />
                 </a>
@@ -35,8 +35,8 @@ export default function Footer() {
                     <Image
                         src='/socials/youtube.png'
                         alt='youtube'
-                        width={30}
-                        height={20}
+                        width={35}
+                        height={25}
                         quality={100}
                     />
                 </a>
@@ -44,8 +44,8 @@ export default function Footer() {
                     <Image
                         src='/socials/linkedin.png'
                         alt='linkedin'
-                        width={20}
-                        height={20}
+                        width={25}
+                        height={25}
                         quality={100}
                     />
                 </a>
