@@ -9,6 +9,7 @@ import { Anton } from 'next/font/google';
 import localFont from 'next/font/local';
 import { FaPeopleGroup } from 'react-icons/fa6';
 import { GiWeightLiftingUp } from 'react-icons/gi';
+import Hero from '@/components/hero';
 
 const headlineFont = Anton({
     subsets: ['latin'],
@@ -25,58 +26,7 @@ export default function Home() {
     return (
         <main>
             <Navbar scrollRef={scrollRef} />
-            <section className='relative min-h-225 w-full overflow-hidden'>
-                <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className='absolute top-0 left-0 w-full h-full object-cover'
-                >
-                    {/* <source
-                        src='https://general-xreed.s3.us-west-2.amazonaws.com/vid.mp4'
-                        type='video/mp4'
-                    /> */}
-                    <p>Your browser does not support the video element.</p>
-                </video>
-                <div className='absolute top-0 left-0 w-full h-full bg-black/50' />
-                <div className='absolute px-10 pt-50 text-white w-full'>
-                    <p className={`${headlineFont.className} text-3xl`}>
-                        Join Our Team
-                    </p>
-                    <div className='bg-white/30 w-full h-0.25 my-10'></div>
-                    <h1 className={`${headlineFont2.className} text-8xl`}>
-                        Fit
-                        <span
-                            style={{
-                                color: 'transparent',
-                                WebkitTextStroke: '2px #FFFFFF',
-                            }}
-                        >
-                            Fusion
-                        </span>
-                    </h1>
-                    <h1 className={`${headlineFont2.className} text-8xl`}>
-                        Gym{' '}
-                        <span
-                            style={{
-                                color: 'transparent',
-                                WebkitTextStroke: '2px #FFFFFF',
-                            }}
-                        >
-                            x
-                        </span>{' '}
-                        Crossfit
-                    </h1>
-                    <div className='mt-10'>
-                        <MyButton
-                            text='VIEW OPEN POSITIONS'
-                            isScrollBtn={true}
-                            scrollRef={scrollRef}
-                        />
-                    </div>
-                </div>
-            </section>
+            <Hero scrollRef={scrollRef} pageSource={'home'} bgVid={'https://general-xreed.s3.us-west-2.amazonaws.com/vid.mp4'} btnText={'VIEW OPEN POSITIONS'} />
             <section className='flex text-white' ref={scrollRef}>
                 <div className='relative'>
                     <Image
