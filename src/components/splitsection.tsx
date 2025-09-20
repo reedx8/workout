@@ -67,7 +67,7 @@ export default function SplitSection({ pageSource }: { pageSource: string }) {
                         </p>
                         <MdKeyboardDoubleArrowDown
                             size={28}
-                            className='text-black'
+                            className='text-black animate-bounce'
                         />
                     </button>
                     <div className='w-fit mt-10'>
@@ -117,7 +117,7 @@ export default function SplitSection({ pageSource }: { pageSource: string }) {
                         </p>
                         <MdKeyboardDoubleArrowDown
                             size={28}
-                            className='text-white'
+                            className='text-white animate-bounce'
                         />
                     </button>
                     <div className='w-fit mt-10'>

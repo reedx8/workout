@@ -79,7 +79,7 @@ export default function Management() {
                         </p>
                         <MdKeyboardDoubleArrowDown
                             size={28}
-                            className='text-black'
+                            className='text-black animate-bounce'
                         />
                     </button>
                 </div>
