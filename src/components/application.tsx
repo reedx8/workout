@@ -12,7 +12,7 @@ const headlineFont2 = localFont({
     src: '../../public/fonts/EurostileExtendedBlack.ttf',
 });
 
-export default function Application() {
+export default function Application({title, subtitle}: {title: string, subtitle?: string}) {
     const [selection, setSelection] = useState('default');
 
     async function handleSearch(formData: FormData) {
@@ -39,8 +39,9 @@ export default function Application() {
             <h2
                 className={`${headlineFont2.className} text-center text-5xl text-white`}
             >
-                START YOUR APPLICATION
+                {title}
             </h2>
+            {subtitle && <p className='text-white text-xl'>{subtitle}</p>}
             <div className='bg-black rounded-lg p-6 min-w-125 mt-8'>
                 <form action={handleSearch} className='flex flex-col gap-2'>
                     <input

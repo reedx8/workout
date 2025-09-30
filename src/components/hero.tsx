@@ -149,7 +149,7 @@ function trainingHero() {
                 IMPACT.
             </h1>
             <p className='text-2xl text-white'>
-                Providing a supportive and inclusive commnuity where everyone can thrive.
+                Providing a supportive and inclusive community where everyone can thrive.
             </p>
         </>
     );
