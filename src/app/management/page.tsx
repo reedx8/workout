@@ -10,6 +10,7 @@ import { MdKeyboardDoubleArrowDown } from 'react-icons/md';
 // import App from 'next/app';
 import Application from '@/components/application';
 import HiringProcess from '@/components/hiringprocess';
+import { useRef } from 'react';
 const headlineFont = Anton({
     subsets: ['latin'],
     weight: ['400'],
@@ -19,11 +20,13 @@ const headlineFont2 = localFont({
 });
 
 export default function Management() {
+    const applicationRef = useRef<HTMLElement | null>(null);
+
     return (
         <main>
-            <Navbar />
+            <Navbar onHomePage={false} />
             <Hero
-                scrollRef={null}
+                scrollRef={applicationRef}
                 pageSource={'management'}
                 // bgVid={
                 //     'https://general-xreed.s3.us-west-2.amazonaws.com/vid.mp4'
@@ -31,7 +34,7 @@ export default function Management() {
                 bgVid={null}
                 btnText={'APPLY NOW'}
             />
-            <SplitSection pageSource={'management'} />
+            <SplitSection pageSource={'management'} scrollRef={applicationRef}/>
             <section className='flex gap-6 p-8 bg-[var(--color-myRedBg)] w-full h-90'>
                 <div className='w-1/2 flex flex-col gap-2'>
                     <p
@@ -55,8 +58,8 @@ export default function Management() {
                     <div className='w-fit mt-10'>
                         <MyButton
                             text='APPLY NOW'
-                            isScrollBtn={false}
-                            // scrollRef={scrollRef}
+                            isScrollBtn={true}
+                            scrollRef={applicationRef}
                         />
                     </div>
                 </div>
@@ -137,7 +140,9 @@ export default function Management() {
                 </div>
             </section>
             <HiringProcess />
-            <Application title="START YOUR APPLICATION"/>
+            <section ref={applicationRef}>
+                <Application title='START YOUR APPLICATION' />
+            </section>
             <Footer />
         </main>
     );

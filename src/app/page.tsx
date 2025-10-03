@@ -12,6 +12,7 @@ import { FaPeopleGroup } from 'react-icons/fa6';
 import { GiWeightLiftingUp } from 'react-icons/gi';
 import { HiArrowSmallLeft, HiArrowSmallRight } from 'react-icons/hi2';
 import Hero from '@/components/hero';
+import Link from 'next/link';
 
 const headlineFont = Anton({
     subsets: ['latin'],
@@ -23,49 +24,51 @@ const headlineFont2 = localFont({
 });
 
 export default function Home() {
-    const scrollRef = useRef<HTMLElement | null>(null);
+    const [expandManageDetails, setExpandManageDetails] = useState(false);
+    const [expandTrainingDetails, setExpandTrainingDetails] = useState(false);
+    const openPositionsScrollRef = useRef<HTMLElement | null>(null);
 
     const workCards = [
-      {
-        imageName: 'fistbump',
-        altName: 'fist bump',
-        title: 'Healthy Culture',
-        text: 'We foster a supportive, family-like environment where employees are valued, respected, and connected. You’re not just a number—you’re part of a team that looks out for one another.',
-        imageFormat: 'jpg',
-        borderColor: '[var(--color-myRedBg)]'
-      },
-      {
-        imageName: 'trainer2',
-        altName: 'trainer',
-        title: 'Autonomy',
-        text: 'Our team consist of trusted professionals with the independence to make decisions that keep FitFusion thriving. We empower you to take action and make a real impact in your community.',
-        imageFormat: 'jpg',
-        borderColor: '[var(--color-myRedBg)]'
-      },
-      {
-        imageName: 'group',
-        altName: 'group',
-        title: 'Opportunities',
-        text: 'No wait for specialty roles—just complete our development program. Advance your career with numerous specialized and instructor positions.',
-        imageFormat: 'jpeg',
-        borderColor: '[var(--color-myRedBg)]'
-      },
-      {
-        imageName: 'smile',
-        altName: 'smile',
-        title: 'Community Support',
-        text: 'We’re committed to providing a supportive and inclusive community where everyone can thrive. Whether you’re a new hire or a seasoned employee, we’re here to help you succeed.',
-        imageFormat: 'jpg',
-        borderColor: '[var(--color-myRedBg)]'
-      },
-      {
-        imageName: 'equip',
-        altName: 'equipment',
-        title: 'Top-Tier Equipment',
-        text: 'Take-home equipment, cutting-edge facilities, and premium clients—ensuring you’re always equipped with what you need to succeed.',
-        imageFormat: 'jpg',
-        borderColor: '[var(--color-myRedBg)]'
-      }
+        {
+            imageName: 'fistbump',
+            altName: 'fist bump',
+            title: 'Healthy Culture',
+            text: 'We foster a supportive, family-like environment where employees are valued, respected, and connected. You’re not just a number—you’re part of a team that looks out for one another.',
+            imageFormat: 'jpg',
+            borderColor: '[var(--color-myRedBg)]',
+        },
+        {
+            imageName: 'trainer2',
+            altName: 'trainer',
+            title: 'Autonomy',
+            text: 'Our team consist of trusted professionals with the independence to make decisions that keep FitFusion thriving. We empower you to take action and make a real impact in your community.',
+            imageFormat: 'jpg',
+            borderColor: '[var(--color-myRedBg)]',
+        },
+        {
+            imageName: 'group',
+            altName: 'group',
+            title: 'Opportunities',
+            text: 'No wait for specialty roles—just complete our development program. Advance your career with numerous specialized and instructor positions.',
+            imageFormat: 'jpeg',
+            borderColor: '[var(--color-myRedBg)]',
+        },
+        {
+            imageName: 'smile',
+            altName: 'smile',
+            title: 'Community Support',
+            text: 'We’re committed to providing a supportive and inclusive community where everyone can thrive. Whether you’re a new hire or a seasoned employee, we’re here to help you succeed.',
+            imageFormat: 'jpg',
+            borderColor: '[var(--color-myRedBg)]',
+        },
+        {
+            imageName: 'equip',
+            altName: 'equipment',
+            title: 'Top-Tier Equipment',
+            text: 'Take-home equipment, cutting-edge facilities, and premium clients—ensuring you’re always equipped with what you need to succeed.',
+            imageFormat: 'jpg',
+            borderColor: '[var(--color-myRedBg)]',
+        },
     ];
 
     const liveCards = [
@@ -113,25 +116,36 @@ export default function Home() {
 
     return (
         <main>
-            <Navbar scrollRef={scrollRef} />
+            <Navbar scrollRef={openPositionsScrollRef} onHomePage={true} />
             <Hero
-                scrollRef={scrollRef}
+                scrollRef={openPositionsScrollRef}
                 pageSource={'home'}
-                // bgVid={
-                //     'https://general-xreed.s3.us-west-2.amazonaws.com/vid.mp4'
-                // }
-                bgVid={null}
+                bgVid={
+                    'https://general-xreed.s3.us-west-2.amazonaws.com/vid.mp4'
+                }
+                // bgVid={null}
                 btnText={'VIEW OPEN POSITIONS'}
             />
-            <section className='flex text-white' ref={scrollRef}>
-                <div className='relative'>
+            <section
+                className='flex text-white'
+                ref={openPositionsScrollRef}
+                id='open-positions'
+            >
+                <div
+                    className='relative'
+                    onMouseEnter={() => setExpandManageDetails(true)}
+                    onMouseLeave={() => setExpandManageDetails(false)}
+                >
                     <Image
                         src='/pics/jump.jpg'
                         alt='quads'
                         width={800}
                         height={600}
                     />
-                    <div className='absolute inset-0 flex flex-col justify-end pl-4 pb-4'>
+                    {expandManageDetails && (
+                        <div className='bg-[var(--color-myRedBg)]/30 absolute inset-0 w-full h-full'></div>
+                    )}
+                    <div className='absolute inset-0 flex flex-col justify-end pl-6 pb-6'>
                         <h2
                             className={`${headlineFont2.className} text-6xl`}
                             style={{
@@ -144,16 +158,46 @@ export default function Home() {
                         <h2 className={`${headlineFont2.className} text-6xl`}>
                             Team
                         </h2>
+                        {expandManageDetails && (
+                            <div className='flex flex-col gap-4 mr-6'>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.
+                                    Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip
+                                    ex ea commodo consequat. Duis aute irure
+                                    dolor in reprehenderit in voluptate velit
+                                    esse cillum dolore eu fugiat nulla pariatur.
+                                    Excepteur sint occaecat cupidatat non
+                                    proident, sunt in culpa qui officia deserunt
+                                    mollit anim id est laborum.
+                                </p>
+                                <Link href='/management'>
+                                    <MyButton
+                                        text='LEARN MORE'
+                                        isScrollBtn={false}
+                                    />
+                                </Link>
+                            </div>
+                        )}
                     </div>
                 </div>
-                <div className='relative'>
+                <div
+                    className='relative'
+                    onMouseEnter={() => setExpandTrainingDetails(true)}
+                    onMouseLeave={() => setExpandTrainingDetails(false)}
+                >
                     <Image
                         src='/pics/weight.jpg'
                         alt='deadlift'
                         width={800}
                         height={600}
                     />
-                    <div className='absolute inset-0 flex flex-col justify-end pl-4 pb-4'>
+                    {expandTrainingDetails && (
+                        <div className='bg-[var(--color-myRedBg)]/30 absolute inset-0 w-full h-full'></div>
+                    )}
+                    <div className='absolute inset-0 flex flex-col justify-end pl-6 pb-6'>
                         <h2
                             className={`${headlineFont2.className} text-6xl`}
                             style={{
@@ -166,6 +210,27 @@ export default function Home() {
                         <h2 className={`${headlineFont2.className} text-6xl`}>
                             Team
                         </h2>
+                        {expandTrainingDetails && (
+                            <div className='flex flex-col gap-4 mr-6'>
+                                <p>
+                                    Sed ut perspiciatis unde omnis iste natus
+                                    error sit voluptatem accusantium doloremque
+                                    laudantium, totam rem aperiam, eaque ipsa
+                                    quae ab illo inventore veritatis et quasi
+                                    architecto beatae vitae dicta sunt
+                                    explicabo. Nemo enim ipsam voluptatem quia
+                                    voluptas sit aspernatur aut odit aut fugit,
+                                    sed quia consequuntur magni dolores eos qui
+                                    ratione voluptatem sequi nesciunt.
+                                </p>
+                                <Link href='/training'>
+                                    <MyButton
+                                        text='LEARN MORE'
+                                        isScrollBtn={false}
+                                    />
+                                </Link>
+                            </div>
+                        )}
                     </div>
                 </div>
             </section>
@@ -287,7 +352,9 @@ export default function Home() {
                 </div>
             </section>
             <section className='bg-black text-white py-20'>
-                <h2 className={`${headlineFont2.className} text-5xl mb-12 px-8`}>
+                <h2
+                    className={`${headlineFont2.className} text-5xl mb-12 px-8`}
+                >
                     <span
                         style={{
                             color: 'transparent',
@@ -474,7 +541,9 @@ export default function Home() {
                             entrusted with the responsibility of managing the
                             day-to-day operations of the company.
                         </p>
-                        <MyButton text='LEARN MORE' isScrollBtn={false} />
+                        <Link href='/management'>
+                            <MyButton text='LEARN MORE' isScrollBtn={false} />
+                        </Link>
                     </div>
                     <div className='py-10 px-15 border-1 w-125 border-[var(--color-myRedBg)] flex flex-col items-center gap-2'>
                         <GiWeightLiftingUp
@@ -492,12 +561,14 @@ export default function Home() {
                             a full range of functions and a high level of
                             service to our company and community.
                         </p>
-                        <MyButton text='LEARN MORE' isScrollBtn={false} />
+                        <Link href='/training'>
+                            <MyButton text='LEARN MORE' isScrollBtn={false} />
+                        </Link>
                     </div>
                 </div>
             </section>
             <section>
-                <Application />
+                <Application title='START YOUR APPLICATION' />
             </section>
             <Footer />
         </main>

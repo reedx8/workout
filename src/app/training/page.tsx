@@ -8,6 +8,7 @@ import { Anton } from 'next/font/google';
 import localFont from 'next/font/local';
 import { ImLab } from 'react-icons/im';
 import HiringProcess from '@/components/hiringprocess';
+import { useRef } from 'react';
 const headlineFont = Anton({
     subsets: ['latin'],
     weight: ['400'],
@@ -17,11 +18,13 @@ const headlineFont2 = localFont({
 });
 
 export default function Training() {
+    const applicationRef = useRef<HTMLElement | null>(null);
+
     return (
         <main>
-            <Navbar />
+            <Navbar onHomePage={false} />
             <Hero
-                scrollRef={null}
+                scrollRef={applicationRef}
                 pageSource={'training'}
                 // bgVid={
                 //     'https://general-xreed.s3.us-west-2.amazonaws.com/vid.mp4'
@@ -121,7 +124,7 @@ export default function Training() {
                             <h2
                                 className={`${headlineFont2.className} text-3xl mb-2`}
                             >
-                               CAREER & RETIREMENT 
+                                CAREER & RETIREMENT
                             </h2>
                             <ol className='list-disc text-lg pl-6 flex flex-col gap-2'>
                                 <li>Uniforms Provided</li>
@@ -131,18 +134,27 @@ export default function Training() {
                         </div>
                     </div>
                     <div className='bg-[var(--color-myRedBg)] h-50 w-full text-white flex flex-col items-center justify-center align-middle text-center p-4'>
-                        <h2 className={`${headlineFont.className} text-4xl mb-2`}>
-                            Training Team Salary Range $24.86 - $51.06 ($52K - $106K / Year)
+                        <h2
+                            className={`${headlineFont.className} text-4xl mb-2`}
+                        >
+                            Training Team Salary Range $24.86 - $51.06 ($52K -
+                            $106K / Year)
                         </h2>
                         <p className='text-xl'>
-                            We offer a competitive salary range and a variety of benefits to help you achieve your career goals.
+                            We offer a competitive salary range and a variety of
+                            benefits to help you achieve your career goals.
                         </p>
                     </div>
                 </div>
             </section>
-            <SplitSection pageSource={'training'} />
+            <SplitSection pageSource={'training'} scrollRef={applicationRef} />
             <HiringProcess />
-            <Application title='BEGIN YOUR APPLICATION' subtitle='Fill out the form to view open positions' />
+            <section ref={applicationRef}>
+                <Application
+                    title='BEGIN YOUR APPLICATION'
+                    subtitle='Fill out the form to view open positions'
+                />
+            </section>
             <Footer />
         </main>
     );

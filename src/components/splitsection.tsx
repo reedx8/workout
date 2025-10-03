@@ -10,8 +10,16 @@ const headlineFont2 = localFont({
 });
 import { MdKeyboardDoubleArrowDown } from 'react-icons/md';
 import MyButton from '@/components/mybutton';
+import { useState } from 'react';
 
-export default function SplitSection({ pageSource }: { pageSource: string }) {
+export default function SplitSection({ pageSource, scrollRef }: { pageSource: string, scrollRef: React.RefObject<HTMLElement> }) {
+    const [expandFirstMinReq, setExpandFirstMinReq] = useState(false);
+    const [expandSecondMinReq, setExpandSecondMinReq] = useState(false);
+
+    // function viewMinReq() {
+    //     setExpandMinReq(!expandMinReq);
+    // }
+
     const pic1 =
         pageSource === 'management' ? '/pics/rope.jpg' : '/pics/jump.jpg';
     const pic2 =
@@ -78,8 +86,8 @@ export default function SplitSection({ pageSource }: { pageSource: string }) {
 
     return (
         <section className='w-full'>
-            <div className='flex w-full'>
-                <div className='w-1/2 h-200'>
+            <div className='flex w-full h-auto'>
+                <div className='w-1/2 h-auto'>
                     <Image
                         src={pic1}
                         alt='section pic 1'
@@ -88,7 +96,7 @@ export default function SplitSection({ pageSource }: { pageSource: string }) {
                         className='w-full h-full'
                     />
                 </div>
-                <div className='flex flex-col gap-4 w-1/2 bg-[var(--color-myRedBg)] h-200 pt-24 px-10'>
+                <div className='flex flex-col gap-4 w-1/2 bg-[var(--color-myRedBg)] h-auto pt-24 px-10'>
                     <h2 className={`${headlineFont2.className} text-5xl`}>
                         <span
                             style={{
@@ -96,56 +104,64 @@ export default function SplitSection({ pageSource }: { pageSource: string }) {
                                 WebkitTextStroke: '2px #000000',
                             }}
                         >
-                            {/* FULL-TIME{' '} */}
                             {title1part1}
                         </span>
                         {title1part2}
-                        {/* ASSISTANT MANAGER */}
                     </h2>
-                    <p
+                    <div
                         className={`${headlineFont.className} text-black text-xl`}
                     >
                         {subTitle1}
-                        {/* Start at $90,000 + $10,000 hiring bonus + incentives
-                        (Average first-year earnings: $97,482) */}
-                    </p>
+                    </div>
                     <div className='bg-black/30 h-0.25 w-full'></div>
-                    <p className='text-lg text-black'>
-                        {body1}
-                        {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum. */}
-                    </p>
+                    <div className='text-lg text-black'>{body1}</div>
                     {pageSource === 'management' && (
-                        <button className='flex gap-2 items-center cursor-pointer'>
-                            <p
-                                className={`${headlineFont2.className} text-black text-2xl`}
-                            >
-                                MINIMUM REQUIREMENTS
-                            </p>
-                            <MdKeyboardDoubleArrowDown
-                                size={28}
-                                className='text-black animate-bounce'
-                            />
+                        <button
+                            className='flex flex-col gap-2 cursor-pointer'
+                            onClick={() =>
+                                setExpandFirstMinReq(!expandFirstMinReq)
+                            }
+                        >
+                            <div className='flex gap-2 items-center'>
+                                <p
+                                    className={`${headlineFont2.className} text-black text-2xl text-left`}
+                                >
+                                    MINIMUM REQUIREMENTS
+                                </p>
+                                <MdKeyboardDoubleArrowDown
+                                    size={28}
+                                    className='text-black animate-bounce'
+                                />
+                            </div>
+                            {expandFirstMinReq && (
+                                <ol className='list-disc text-lg text-left'>
+                                    <li className='ml-6'>U.S. citizen</li>
+                                    <li className='ml-6'>
+                                        21 years of age or older
+                                    </li>
+                                    <li className='ml-6'>
+                                        High school diploma or GED
+                                    </li>
+                                    <li className='ml-6'>{`Valid driver's license`}</li>
+                                    <li className='ml-6'>
+                                        Ability to pass a background
+                                        investigation
+                                    </li>
+                                </ol>
+                            )}
                         </button>
                     )}
-                    <div className='w-fit mt-10'>
+                    <div className='w-fit mt-6 mb-2'>
                         <MyButton
                             text='APPLY NOW'
-                            isScrollBtn={false}
-                            // scrollRef={scrollRef}
+                            isScrollBtn={true}
+                            scrollRef={scrollRef}
                         />
                     </div>
                 </div>
             </div>
-            <div className='flex w-full overflow-y-clip'>
-                <div className='flex flex-col gap-4 w-1/2 bg-black h-200 pt-24 px-10'>
+            <div className='flex w-full h-auto'>
+                <div className='flex flex-col gap-4 w-1/2 bg-black h-auto pt-24 px-10'>
                     <h2
                         className={`${headlineFont2.className} text-5xl text-[var(--color-myRedBg)]`}
                     >
@@ -165,41 +181,55 @@ export default function SplitSection({ pageSource }: { pageSource: string }) {
                         className={`${headlineFont.className} text-white text-xl`}
                     >
                         {subTitle2}
-                        {/* Earn up to $127,458 + $25,000 hiring bonus + incentives
-                        (Average 4-year Manager earned $147k in 2024) */}
                     </p>
                     <div className='bg-white/30 h-0.25 w-full'></div>
-                    <p className='text-white text-lg'>
-                        {body2}
-                        {/* Our club team consists of people passionate about health
-                        and fitness who are committed to making the fitness
-                        experience at our clubs an exceptional one. They span
-                        multiple departments and are responsible for creating
-                        and maintaining a clean, fun, friendly environment and
-                        helping set the tone for the club experience. */}
-                    </p>
+                    <div className='text-white text-lg'>{body2}</div>
                     {pageSource === 'management' && (
-                        <button className='flex gap-2 items-center cursor-pointer'>
-                            <p
-                                className={`${headlineFont2.className} text-white text-2xl`}
-                            >
-                                MINIMUM REQUIREMENTS
-                            </p>
-                            <MdKeyboardDoubleArrowDown
-                                size={28}
-                                className='text-white animate-bounce'
-                            />
+                        <button
+                            className='flex flex-col gap-2 cursor-pointer text-white'
+                            onClick={() =>
+                                setExpandSecondMinReq(!expandSecondMinReq)
+                            }
+                        >
+                            <div className='flex gap-2 items-center'>
+                                <p
+                                    className={`${headlineFont2.className} text-2xl text-left`}
+                                >
+                                    MINIMUM REQUIREMENTS
+                                </p>
+                                <MdKeyboardDoubleArrowDown
+                                    size={28}
+                                    className='text-white animate-bounce'
+                                />
+                            </div>
+                            {expandSecondMinReq && (
+                                <ol className='list-disc text-lg text-left'>
+                                    <li className='ml-6'>U.S. citizen</li>
+                                    <li className='ml-6'>
+                                        21 years of age or older
+                                    </li>
+                                    <li className='ml-6'>
+                                        Bachelors or higher degree
+                                    </li>
+                                    <li className='ml-6'>5 years of experience</li>
+                                    <li className='ml-6'>{`Valid driver's license`}</li>
+                                    <li className='ml-6'>
+                                        Ability to pass a background
+                                        investigation
+                                    </li>
+                                </ol>
+                            )}
                         </button>
                     )}
-                    <div className='w-fit mt-10'>
+                    <div className='w-fit mt-6 mb-2'>
                         <MyButton
                             text='APPLY NOW'
-                            isScrollBtn={false}
-                            // scrollRef={scrollRef}
+                            isScrollBtn={true}
+                            scrollRef={scrollRef}
                         />
                     </div>
                 </div>
-                <div className='w-1/2 h-200'>
+                <div className='w-1/2 h-auto'>
                     <Image
                         src={pic2}
                         alt='section pic 2'
